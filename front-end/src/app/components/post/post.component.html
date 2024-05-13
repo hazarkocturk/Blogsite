@@ -1,1 +1,16 @@
-<h1>THE BLOG</h1>
+<h1>{{post.title}}</h1>
+<button
+type="button"
+pButton
+icon="pi pi-pencil"
+(click)="editPost()"
+label="Edit"
+></button>
+<button
+type="button"
+pButton
+icon="pi pi-trash"
+(click)="deletePost()"
+label="Delete"
+></button>
+

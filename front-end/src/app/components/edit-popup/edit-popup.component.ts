@@ -28,6 +28,7 @@ export class EditPopupComponent {
 
   @Output() confirm = new EventEmitter<Post>();
 
-  onConfirm = () => this.confirm.emit(this.post);
+  // onConfirm = () => this.confirm.emit(this.post);
+  onConfirm = () => console.log(this.post);
   onCancel = () => (this.display = false);
 }

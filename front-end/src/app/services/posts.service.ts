@@ -24,4 +24,8 @@ export class PostsService {
   deletePosts = (url: string): Observable<any> => {
     return this.apiService.delete(url);
   };
+
+  getPostById = (url: string): Observable<Post> => {
+    return this.apiService.get(url);
+  }
 }

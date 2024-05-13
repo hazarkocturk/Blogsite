@@ -46,7 +46,7 @@ export class HomeComponent {
     if (!this.selectedPost.id) {
       return;
     }
-    this.editPosts(post, this.selectedPost.id);
+    this.editPosts(this.selectedPost, this.selectedPost.id);
     this.displayEditPopup = false;
   };
 

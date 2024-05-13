@@ -1,9 +1,6 @@
-<div 
-  class="column card-wrapper"
-  routerLink="/post/{{post.id}}"
->
+<div class="column card-wrapper">
   <img [src]="post.image" alt="" />
-  <div class="column text-wrapper gap-05">
+  <div class="column text-wrapper gap-05" routerLink="/post/{{ post.id }}">
     <h2 class="title">{{ post.title }}</h2>
     <div class="row space-between">
       <span class="view">{{ post.views + "views" }}</span>
