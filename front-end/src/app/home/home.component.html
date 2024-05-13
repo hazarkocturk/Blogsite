@@ -1,1 +1,36 @@
-<p>home works!</p>
+<div class="column">
+  <!-- Create new post button -->
+  <button
+    type="button"
+    pButton
+    icon="pi-piplus"
+    label="Create a new post"
+    (click)="toggleAddPopup()"
+  ></button>
+
+  <!-- Posts selection -->
+  <div class="row wrap gap-1 space-between">
+    <app-card
+      *ngFor="let post of posts"
+      [post]="post"
+      (edit)="toggleEditPopup($event)"
+      (delete)="toggleDeletePopup ($event)"
+    />
+  </div>
+</div>
+
+<!-- Edit Popup -->
+
+<app-edit-popup
+  [post]="selectedPost"
+  [display]="displayEditPopup"
+  (confirm)="onConfirmEdit($event)"
+  header="Edit Post"
+/>
+
+<!-- New Post Popup -->
+<app-edit-popup
+  [display]="displayAddPopup"
+  (confirm)="onConfirmAdd($event)"
+  header="Write New Post"
+/>

@@ -27,20 +27,23 @@ import { HttpHeaders, HttpContext, HttpParams } from '@angular/common/http';
 //     | boolean;
 // }
 
-export interface Articles {
-  articles: Article[];
-
+export interface Posts {
+  posts: Post[];
 }
 
-export interface Article {
-  id: number;
-  image: string;
+export interface Post {
+  id?: number;
+  category?: string;
   title: string;
-  author: string;
-  date: string;
   content: string;
-
+  slug:string;
+  image: string[];
+  date: string;
+  views: number;
+  likes: number;
 }
+
+
 
 // export interface PaginationParams {
 //   [param: string]:
