@@ -1,0 +1,50 @@
+<button type="button" (click)="display = true" *ngIf="!this.authService.isLoggedIn()">
+  Login
+</button>
+
+<button type="button" (click)="this.authService.logout()" *ngIf="this.authService.isLoggedIn()">
+    Log out
+</button>
+
+
+
+<p-dialog [modal]="true" [(visible)]="display">
+  <div class="column gap-1">
+    <!-- TITLE -->
+
+    <div class="row gap-05">
+        <input type="text" name="email" placeholder="Email" [(ngModel)]="email" />
+    </div>
+    <div class="row gap-05">
+
+        
+        <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+      />
+    </div>
+
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="onLogin()">Log in</button>
+  </p-footer>
+</p-dialog>
+
+
+<!-- <form (submit)="login($event)">
+    <div>
+      <input type="text" name="email" placeholder="Email" [(ngModel)]="email" />
+    </div>
+    <div>
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+      />
+    </div>
+  
+    <button>Login</button>
+  </form> -->

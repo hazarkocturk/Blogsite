@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,15 @@ import { FooterComponent } from './layout/footer/footer.component';
 })
 export class AppComponent {
   title = 'front-end';
+
+  authService = inject(AuthService);
+
+  // constructor() {
+  //   this.authService
+  //     .login({ email: 'nico@nico.nico', password: 'nico' })
+  //     .subscribe({
+  //       next: (data) => console.log(data),
+  //       error: (err) => console.log(err),
+  //     });
+  // }
 }

@@ -1,5 +1,6 @@
 <header class="wrapper row space-between">
   <h1 routerLink="/">B L O G S I T E</h1>
-    <!-- Create new post button -->
-  <a routerLink="/new-post">New Post</a>
+  <!-- Create new post button -->
+  <a routerLink="/new-post" *ngIf="this.authService.isLoggedIn()">New Post</a>
+  <app-auth />
 </header>

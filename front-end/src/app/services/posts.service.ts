@@ -9,12 +9,12 @@ import { Posts, Post } from '../../types';
 export class PostsService {
   constructor(private apiService: ApiService) {}
 
-  getPosts = (url: string): Observable<Posts> => {
+  getPosts = (url: string): Observable<any> => {
     return this.apiService.get(url);
   };
 
   addPosts = (url: string, body: Post): Observable<any> => {
-    return this.apiService.put(url, body);
+    return this.apiService.post(url, body);
   };
 
   editPosts = (url: string, body: Post): Observable<any> => {
@@ -27,5 +27,5 @@ export class PostsService {
 
   getPostById = (url: string): Observable<Post> => {
     return this.apiService.get(url);
-  }
+  };
 }

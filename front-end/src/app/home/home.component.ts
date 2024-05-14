@@ -5,6 +5,7 @@ import { PostsService } from '../services/posts.service';
 import { CommonModule } from '@angular/common';
 import { EditPopupComponent } from '../components/edit-popup/edit-popup.component';
 import { ButtonModule } from 'primeng/button';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +15,24 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  constructor(private postsService: PostsService) {}
+  constructor(private postsService: PostsService, private authService: AuthService) {}
 
   posts: Post[] = [];
+
+  connect = () => {
+    this.authService.login({email: "nico@nico.nico",password: "nico"})
+    .subscribe({
+      next: (data) => console.log(data),
+      error : (err) => console.log(err),
+    })
+  }
+
+  testRoute = () => {
+    
+    this.authService.getStuff().subscribe((r) => console.log(r))
+
+  }
+ 
 
   displayEditPopup: boolean = false;
   displayAddPopup: boolean = false;

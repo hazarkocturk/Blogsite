@@ -1,14 +1,16 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../../../types';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { CommonModule, DatePipe } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [ButtonModule, CommonModule],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
@@ -16,13 +18,19 @@ export class PostComponent {
 
   @Output() edit: EventEmitter<Post> = new EventEmitter<Post>();
   @Output() delete: EventEmitter<Post> = new EventEmitter<Post>();
+
+  authService = inject(AuthService)
+  
   
   constructor(
     private postsService: PostsService,
     private route: ActivatedRoute,
+    private router: Router,
+    private datePipe: DatePipe,
+    // private authService : AuthService
     ) {}
   
-  post:Post = {
+  post: Post = {
     id: 0,
     category: '',
     image: [''],
@@ -34,7 +42,13 @@ export class PostComponent {
     likes: 0,
   }
 
-  editPost = () => console.log("edit");
+  formatDate = (date: string): string  => this.datePipe.transform(date, 'EEE d MMM yyyy') || '';
+
+  navigateToEditPost = (post: Post) => {
+    this.router.navigate(['edit-post/'+post.id])
+  }
+
+  editPost = () => this.navigateToEditPost(this.post);
   deletePost = () => console.log("delete");
 
   getPost():void {
