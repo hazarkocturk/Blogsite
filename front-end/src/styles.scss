@@ -38,10 +38,6 @@ body {
   font-family: "Roboto";
 }
 
-a {
-  color: var(--highlight);
-}
-
 .row {
   display: flex;
   flex-direction: row;
@@ -120,4 +116,43 @@ a {
   text-align: center;
   font-weight: 200;
   letter-spacing: 2px;
+}
+
+a {
+  color: var(--highlight);
+  text-decoration: none;
+  &:hover {
+    color: var(--mid);
+    cursor: pointer;
+  }
+  &:active {
+    color: var(--text-color);
+  }
+}
+
+button {
+  padding: 0.5rem 2rem;
+  background-color: var(--highlight);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--mid);
+    color: var(--text-color);
+  }
+  &:active {
+    background-color: var(--text-color);
+    color: var(--highlight);
+  }
+}
+
+.search-bar {
+  padding: 0.5rem;
+  background-color: var(--text-color-transparent);
+  border: none;
+  &:focus {
+    outline: 1px solid var(--mid);
+    background-color: var(--text-color);
+  }
 }

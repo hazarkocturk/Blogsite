@@ -16,7 +16,7 @@ export class AuthService {
 
   login(user: { email: string; password: string }): Observable<any> {
     return this.http
-      .post('https://lokkeroom-7168807cbabe.herokuapp.com/api/login', user)
+      .post('https://blogdbhazar-nico-5d30f5ae698b.herokuapp.com/api/auth/login', user)
       .pipe(
         tap((tokens) => {
           this.doLoginUser(user.email, tokens);
@@ -25,6 +25,16 @@ export class AuthService {
           console.log('user', user);
         })
       );
+  }
+  register(user: {
+    name: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+    userType: string;
+  }): Observable<any> {
+    console.log(user)
+    return this.http.post("https://blogdbhazar-nico-5d30f5ae698b.herokuapp.com/api/auth/register", user)
   }
 
   private doLoginUser(username: string, tokens: any) {

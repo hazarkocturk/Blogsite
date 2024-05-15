@@ -110,6 +110,7 @@ export class HomeComponent {
       },
     });
   }
+  
   deletePosts(id: number) {
     this.postsService
       .deletePosts(`http://localhost:3000/posts/${id}`)

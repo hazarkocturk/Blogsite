@@ -7,7 +7,7 @@
     <h2 class="subtitle">Empowering Bloggers, One Post at a Time</h2>
   </div>
 
-  <div class="small-width">
+  <div class="limited-width">
     <h3 class="section-title mb-1">What's this blog ?</h3>
     <p class="mb-2">
       Welcome to "How to Blog 101" – your ultimate destination for mastering the
@@ -24,24 +24,9 @@
   </div>
 </section>
 
-<div class="column">
-  <button
-    type="button"
-    pButton
-    icon="pi-piplus"
-    label="Connection"
-    (click)="connect()"
-  ></button>
-
-  <button
-    type="button"
-    pButton
-    icon="pi-piplus"
-    label="get stuff"
-    (click)="testRoute()"
-  ></button>
-
-  <!-- Posts selection -->
+<!-- Posts selection -->
+<section>
+  <h3 class="section-title mb-1">Latest posts</h3>
   <div class="row wrap gap-1 space-between limited-width">
     <app-card
       *ngFor="let post of posts"
@@ -50,20 +35,4 @@
       (delete)="toggleDeletePopup($event)"
     />
   </div>
-</div>
-
-<!-- Edit Popup -->
-
-<app-edit-popup
-  [post]="selectedPost"
-  [display]="displayEditPopup"
-  (confirm)="onConfirmEdit($event)"
-  header="Edit Post"
-/>
-
-<!-- New Post Popup -->
-<app-edit-popup
-  [display]="displayAddPopup"
-  (confirm)="onConfirmAdd($event)"
-  header="Write New Post"
-/>
+</section>
