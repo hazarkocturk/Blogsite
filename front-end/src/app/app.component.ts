@@ -3,6 +3,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { AuthService } from './services/auth.service';
+import { HttpClientService } from './services/http-client.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,11 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'front-end';
 
-  authService = inject(AuthService);
+constructor( private http : HttpClientService){}
+
+  ngOnInit(): void {
+    this.http.getCsrf();
+  }
 
   // constructor() {
   //   this.authService

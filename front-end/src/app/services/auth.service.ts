@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { HttpClientService } from './http-client.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +11,9 @@ export class AuthService {
   private loggedUser?: string;
   private IsAuthenticatedSubject = new BehaviorSubject<boolean>(false);
 
-  private http = inject(HttpClient);
 
-  constructor() {}
+
+  constructor(private http : HttpClientService) {}
 
   login(user: { email: string; password: string }): Observable<any> {
     return this.http

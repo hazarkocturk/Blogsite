@@ -27,11 +27,11 @@ export class HomeComponent {
     })
   }
 
-  testRoute = () => {
+  // testRoute = () => {
     
-    this.authService.getStuff().subscribe((r) => console.log(r))
+  //   this.authService.getStuff().subscribe((r) => console.log(r))
 
-  }
+  // }
  
 
   displayEditPopup: boolean = false;
@@ -129,7 +129,7 @@ export class HomeComponent {
     console.log(post, 'output');
   }
 
-  ngOnInit() {
-    this.fetchPosts();
-  }
+  // ngOnInit() {
+  //   this.fetchPosts();
+  // }
 }
