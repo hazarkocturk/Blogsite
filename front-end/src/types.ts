@@ -33,11 +33,11 @@ export interface Posts {
 
 export interface Post {
   id?: number;
-  category?: string;
+  category_id: number;
   title: string;
   content: string;
   slug:string;
-  image: string[];
+  image: File[];
   date: string;
   views: number;
   likes: number;

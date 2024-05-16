@@ -19,13 +19,6 @@ export class HomeComponent {
 
   posts: Post[] = [];
 
-  connect = () => {
-    this.authService.login({email: "nico@nico.nico",password: "nico"})
-    .subscribe({
-      next: (data) => console.log(data),
-      error : (err) => console.log(err),
-    })
-  }
 
   // testRoute = () => {
     
@@ -48,8 +41,8 @@ export class HomeComponent {
 
   selectedPost: Post = {
     id: 0,
-    category: '',
-    image: [''],
+    category_id: 1,
+    image: [],
     title: '',
     date: '',
     content: '',
@@ -77,9 +70,11 @@ export class HomeComponent {
    *                  *
    ********************/
   fetchPosts() {
-    this.postsService.getPosts('http://localhost:3001/posts').subscribe({
-      next: (posts: Posts) => {
-        this.posts = posts.posts;
+    this.postsService.getPosts('https://blogdbhazar-nico-5d30f5ae698b.herokuapp.com/api/blogs').subscribe({
+      next: (response:any) => {
+        console.log("fetching posts...")
+        console.log(response.data.data)
+        this.posts = response.data.data;
       },
       error: (error) => {
         console.log(error);
@@ -129,7 +124,7 @@ export class HomeComponent {
     console.log(post, 'output');
   }
 
-  // ngOnInit() {
-  //   this.fetchPosts();
-  // }
+  ngOnInit() {
+    this.fetchPosts();
+  }
 }

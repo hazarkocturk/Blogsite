@@ -11,7 +11,13 @@
     <!-- URL TO IMG -->
     <div class="row gap-05">
         <span class="price-label"> Image: </span>
-        <input type="text" [(ngModel)] = "post.image[0]"/>
+        <input type="file" [(ngModel)] = "post.image[0]"/>
+    </div>
+
+    <div class="row gap-05">
+        <span class="price-label"> Category: </span>
+        <input type="text" [(ngModel)] = "post.category_id"/>
+        
     </div>
 
     <!-- CONTENT  -->

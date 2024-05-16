@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class HttpClientService {
-  csrfToken: string = '';
+  csrfToken: string = ""
 
   constructor(private http: HttpClient) {}
 
@@ -14,11 +14,11 @@ export class HttpClientService {
   }
 
   post(url: string, data: any): any {
-    return this.http.post(url, data, {
-      headers: new HttpHeaders({
-        'X-CSRF-TOKEN': this.csrfToken,
-      }) /*withCredentials: true*/,
-    });
+    return this.http.post(url, data, 
+      {
+       withCredentials: true,
+      }
+    );
   }
 
   // getCsrfToken(): string {
@@ -31,9 +31,10 @@ export class HttpClientService {
     console.log('getting token....');
     return this.http
       .get(
-        'https://blogdbhazar-nico-5d30f5ae698b.herokuapp.com/' /*{withCredentials: true}*/
+        'https://blogdbhazar-nico-5d30f5ae698b.herokuapp.com/', {withCredentials: true}
       )
       .subscribe((data: any) => {
+        console.log(data);
         this.csrfToken = data.token;
         console.log('token', this.csrfToken);
       });

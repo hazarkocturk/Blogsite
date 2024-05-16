@@ -4,29 +4,31 @@
   [(visible)]="display"
   [closable]="false"
 >
-    <div class="column gap-1">
+  <div class="column gap-1">
+    <!-- TITLE -->
+    <div class="row gap-05">
+      <span class="price-label"> Title: </span>
+      <input type="text" [(ngModel)]="post.title" />
+    </div>
 
-        <!-- TITLE -->
-        <div class="row gap-05">
-            <span class="price-label"> Title: </span>
-            <input type="text" [(ngModel)] = "post.title"/>
-        </div>
-
-        <!-- URL TO IMG -->
-        <div class="row gap-05">
+    <!-- URL TO IMG -->
+    <!-- <div class="row gap-05">
             <span class="price-label"> Image: </span>
             <input type="text" [(ngModel)] = "post.image[0]"/>
-        </div>
+        </div> -->
 
-        <!-- CONTENT  -->
-        <div class="row gap-05">
-            <span class="price-label"> Content: </span>
-            <input type="text" [(ngModel)] = "post.content"/>
-        </div>
-
+    <!-- CONTENT  -->
+    <div class="row gap-05">
+      <span class="price-label"> Content: </span>
+      <input type="text" [(ngModel)]="post.content" />
     </div>
-    <p-footer>
-        <button type="button" pButton icon="pi pi-check" (click)="onConfirm()">Confirm</button>
-        <button type="button" pButton icon="pi pi-times" (click)="onCancel()">Cancel</button>
-    </p-footer>
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="onConfirm()">
+      Confirm
+    </button>
+    <button type="button" pButton icon="pi pi-times" (click)="onCancel()">
+      Cancel
+    </button>
+  </p-footer>
 </p-dialog>

@@ -32,8 +32,8 @@ export class PostComponent {
   
   post: Post = {
     id: 0,
-    category: '',
-    image: [''],
+    category_id: 1,
+    image: [],
     title: '',
     date: '',
     content: '',
@@ -53,10 +53,11 @@ export class PostComponent {
 
   getPost():void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.postsService.getPostById("http://localhost:3001/posts/"+id)
+    this.postsService.getPostById("https://blogdbhazar-nico-5d30f5ae698b.herokuapp.com/api/blogs/"+id)
     .subscribe({
-      next: (post: Post) => {
-        this.post = post;
+      next: (response:any) => {
+        console.log(response)
+        this.post = response.data;
       },
       error: (error) => {
         console.log(error);

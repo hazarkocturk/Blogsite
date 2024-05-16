@@ -2,31 +2,44 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClientService } from './http-client.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
+  private AUTH_TOKEN =''
   private loggedUser?: string;
   private IsAuthenticatedSubject = new BehaviorSubject<boolean>(false);
 
 
 
-  constructor(private http : HttpClientService) {}
+  constructor(private http : HttpClientService, private cookieService : CookieService) {}
 
   login(user: { email: string; password: string }): Observable<any> {
     return this.http
       .post('https://blogdbhazar-nico-5d30f5ae698b.herokuapp.com/api/auth/login', user)
       .pipe(
-        tap((tokens) => {
-          this.doLoginUser(user.email, tokens);
+        tap((data) => {
+          this.doLoginUser(user.email, data);
 
-          console.log('tokens', tokens);
+          // Set the token in a cookie
+          console.log('tokens', data);
           console.log('user', user);
         })
       );
   }
+
+  getBlogs (){
+    console.log("getting blogs...")
+    this.http.get('https://blogdbhazar-nico-5d30f5ae698b.herokuapp.com/api/blogs').subscribe((response:any) => {
+      console.log(response)
+    })
+  }
+
+
+
   register(user: {
     name: string;
     email: string;
@@ -41,8 +54,16 @@ export class AuthService {
   private doLoginUser(username: string, tokens: any) {
     this.loggedUser = username;
     console.log('loggedUser', this.loggedUser);
+    this.AUTH_TOKEN = tokens.token
+    this.cookieService.set('auth_token', this.AUTH_TOKEN);
     this.storeJwtToken(tokens.token);
     this.IsAuthenticatedSubject.next(true);
+  }
+
+  post(url:string, data:any): Observable<any>{
+    this.cookieService.set('auth_token', this.AUTH_TOKEN)
+    console.log(this.AUTH_TOKEN)
+    return this.http.post(url, data)
   }
 
   private storeJwtToken(jwt: string) {
@@ -54,12 +75,6 @@ export class AuthService {
     this.IsAuthenticatedSubject.next(false);
   }
 
-  getStuff = () => {
-    let token = localStorage.getItem(this.JWT_TOKEN);
-    return this.http.get(
-      'https://lokkeroom-7168807cbabe.herokuapp.com/api/user/lobbies'
-    );
-  };
 
   // getCurrentAuthUser = () => {
 

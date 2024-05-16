@@ -16,11 +16,11 @@ export class EditPopupComponent {
   @Input() header!: string;
 
   @Input() post: Post = {
-    category: '',
-    image: [''],
-    title: '',
+    category_id: 3,
+    image: [],
+    title: 'exemple',
     date: '',
-    content: '',
+    content: 'Lorem Ipsum',
     slug: '',
     views: 0,
     likes: 0,
